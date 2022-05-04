@@ -30,6 +30,7 @@ h1{
      padding: 5px;
      width: 1130px;
     margin-left: 100px;
+    background: #444444;
     
 }
 .key{
@@ -43,11 +44,13 @@ h1{
         border: 1px solid black;
         float: left;
         line-height: 3;
+        background: black;
+        color: aliceblue;
     }
 
 
 .active{
-    background-color: rgb(137, 150, 199);
+    background-color: rgb(93, 107, 158);
     border: 1px solid red;
  
        color: red;
