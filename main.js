@@ -4,22 +4,53 @@ const keybord = [192, 49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 189, 187, 8, 36, 9
 
 
 let simvol ='';
-
+//добавление даты и символа .//
 for(let i=0;i<keybord.length;i++){
      simvol+='<div class="key" data="'+keybord[i]+'">'+String.fromCharCode(keybord[i])+'</div>'
 keyboard.innerHTML=simvol;
 }
+document.querySelector('.key[data="189"]').innerHTML='-';
+
+//добавление даты и символа .end//
+let arrtext='';
+let bac ='';
 let key='';
 let addk ='';
+let Arrtext = [];
 const newLocal = 'backspase';
+
 document.onkeydown = function(event){
     let act = document.getElementsByClassName('active');
  if(act[0]){
      act[0].classList.remove('active');
  }
  document.querySelector('.key[data="'+event.keyCode+'"]').classList.add('active');
- addk += String.fromCharCode(event.keyCode);
- document.querySelector('.text').innerHTML=addk;
+ console.log(event.keyCode);
+ //вывод текста на экран...//
+ if(event.keyCode==189){
+    addk='-';   
+    Arrtext.push(addk);
+    console.log('189------------------');
+ }
+ else
+    if(event.keyCode =='8'){ 
+   Arrtext.splice(Arrtext.length-1,1);
+
+}
+
+else{
+    addk = String.fromCharCode(event.keyCode);
+    Arrtext.push(addk);
+    
+}
+
+
+arrtext = Arrtext.join('');
+document.querySelector('.text').innerHTML=arrtext;
+ 
+ 
+  //вывод текста на экран...END//
+
 }
 
 document.querySelector('.key[data="8"]').innerHTML = 'BACKSPACE';
