@@ -72,9 +72,17 @@ else
         Arrtext.push(addk);
 }
 
-else{
+if(event.getModifierState('CapsLock')){
+    
     addk = String.fromCharCode(event.keyCode);
-    Arrtext.push(addk);
+    
+   // Arrtext.push(addk);
+}
+
+else{
+    addk=String.fromCharCode((String.fromCharCode(event.keyCode).toLowerCase()).charCodeAt());
+    
+//Arrtext.push(addk);
     
 }
 
@@ -87,13 +95,15 @@ document.querySelector('.text').innerHTML=arrtext;
 
 }
 
-   
    //Переназначение кнопок...END.//
     //вывод текста на экран...//
-  arrtext = Arrtext.join('');
- document.querySelector('.text').innerHTML=arrtext;
+    
+  
 
-   
+  
+ 
+
+
 
 //Мишка
 
@@ -132,7 +142,7 @@ selectorkey.forEach(function(element) {
 
 }
 });
-
+//Мишка end//
   
   
 
