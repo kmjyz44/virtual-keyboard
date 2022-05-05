@@ -71,23 +71,25 @@ else
         addk='=';   
         Arrtext.push(addk);
 }
-
+else
 if(event.getModifierState('CapsLock')){
-    
+    if(event.keyCode !=20){
     addk = String.fromCharCode(event.keyCode);
-    
-   // Arrtext.push(addk);
+    Arrtext.push(addk);
 }
-
+}
 else{
     addk=String.fromCharCode((String.fromCharCode(event.keyCode).toLowerCase()).charCodeAt());
-    
-//Arrtext.push(addk);
+    if(event.keyCode != 20){
+       
+        Arrtext.push(addk);
+    }
     
 }
 
 //Переназначение кнопок...END.//
  //вывод текста на экран...//
+ //Arrtext.push(addk);
 arrtext = Arrtext.join('');
 document.querySelector('.text').innerHTML=arrtext;
 
