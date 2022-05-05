@@ -40,7 +40,7 @@ document.querySelector('.key[data="37"]').innerHTML= '&larr;';
 document.querySelector('.key[data="40"]').innerHTML= '&darr;';
 document.querySelector('.key[data="39"]').innerHTML= '&#8594;';
 document.querySelector('.key[data="32"]').innerHTML= '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
-
+document.querySelector('.key[data="8"]').innerHTML = 'BACKSPACE';
 
 
 //добавление даты и символа .end//
@@ -50,7 +50,6 @@ let key='';
 let addk ='';
 let Arrtext = [];
 const newLocal = 'backspase';
-
 document.onkeydown = function(event){
     let act = document.getElementsByClassName('active');
  if(act[0]){
@@ -80,15 +79,60 @@ else{
 }
 
 //Переназначение кнопок...END.//
-
  //вывод текста на экран...//
 arrtext = Arrtext.join('');
 document.querySelector('.text').innerHTML=arrtext;
- 
- 
+
   //вывод текста на экран...END//
 
 }
 
-document.querySelector('.key[data="8"]').innerHTML = 'BACKSPACE';
+   
+   //Переназначение кнопок...END.//
+    //вывод текста на экран...//
+  arrtext = Arrtext.join('');
+ document.querySelector('.text').innerHTML=arrtext;
+
+   
+
+//Мишка
+
+let selectorkey = document.querySelectorAll('#keyboard .key');
+selectorkey.forEach(function(element) {
+    element.onclick = function(ev){
+        act = document.getElementsByClassName('active');
+    if(act[0]){
+       act[0].classList.remove('active');
+    }
+    
+    let datakey = element.getAttribute('data');
+    document.querySelector('.key[data="'+datakey+'"]').classList.add('active');
+    if(datakey==189){
+        addk='-';   
+        Arrtext.push(addk);
+     }
+     else
+        if(datakey =='8'){ 
+       Arrtext.splice(Arrtext.length-1,1);
+    }
+    else
+        if(datakey ==187){ 
+            addk='=';   
+            Arrtext.push(addk);
+    }
+    
+    else{
+    addk = String.fromCharCode(datakey);
+    Arrtext.push(addk);
+    arrtext = Arrtext.join('');
+    document.querySelector('.text').innerHTML=arrtext;
+    }
+    arrtext = Arrtext.join('');
+    document.querySelector('.text').innerHTML=arrtext;
+
+}
+});
+
+  
+  
 
