@@ -69,21 +69,20 @@ document.onkeydown = function(event){
  if(act[0]){
      act[0].classList.remove('active');
  }
- document.querySelector('.key[data="'+event.keyCode+'"]').classList.add('active');
  
-//Переназначение кнопок....//
- if(event.keyCode==189){
-    addk='-';   
+ if(event.code=='ShiftRight'){
+    document.querySelector('.key[data="161"]').classList.add('active');
     
  }
- else
+else{
+document.querySelector('.key[data="'+event.keyCode+'"]').classList.add('active');
+} 
+//Переназначение кнопок....//
+
     if(event.keyCode =='8'){ 
    Arrtext.splice(Arrtext.length-1,1);
    }
-else
-    if(event.keyCode ==187){ 
-        addk='=';   
-}
+
 else
 if(event.getModifierState('CapsLock')){
     
@@ -105,9 +104,9 @@ if(event.getModifierState("Alt"+"Shift")){
 
 else{
     addk=event.key;
-    //String.fromCharCode((String.fromCharCode(event.keyCode).toLowerCase()).charCodeAt());   
+  
 }
-if(event.keyCode != 20 && event.keyCode != 16 && event.keyCode != 17 && event.keyCode != 18 ){ 
+if(event.keyCode != 20 && event.keyCode != 16 && event.keyCode != 17 && event.keyCode != 18 && event.keyCode != 36 && event.keyCode != 9 && event.keyCode != 33 && event.keyCode != 13 && event.keyCode != 34 && event.keyCode != 38 && event.keyCode != 35 && event.keyCode != 17 && event.keyCode != 91 && event.keyCode != 37 && event.keyCode != 40 && event.keyCode != 39){ 
     Arrtext.push(addk);
 }
 if(event.keyCode =='8'){ 
@@ -116,7 +115,7 @@ if(event.keyCode =='8'){
  }
 //Переназначение кнопок...END.//
  //вывод текста на экран...//
- 
+ console.log(event);
 arrtext = Arrtext.join('');
 document.querySelector('.text').innerHTML=arrtext;
 
