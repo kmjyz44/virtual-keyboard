@@ -7,10 +7,7 @@ let simvol ='';
 //добавление даты и символа .//
 let keyboard_sim='';
 
-//for(let i=0;i<keybord.length;i++){
-  //   simvol+='<div class="key" data="'+keybord[i]+'">'+(String.fromCharCode(keybord[i])).toLowerCase()+'</div>'
-//keyboard.innerHTML=simvol;
-//}
+
 function add_symvol(){
 for(let i=0;i<keybord.length;i++){
      simvol+='<div class="key" data="'+keybord[i]+'">'+(String.fromCharCode(keybord[i])).toLowerCase()+'</div>'
@@ -19,7 +16,7 @@ for(let i=0;i<keybord.length;i++){
 }
 add_symvol();
   
-
+function keydatakey (){
 document.querySelector('.key[data="192"]').innerHTML='`';
 document.querySelector('.key[data="189"]').innerHTML='-';
 document.querySelector('.key[data="187"]').innerHTML='=';
@@ -53,7 +50,8 @@ document.querySelector('.key[data="39"]').innerHTML= '&#8594;';
 document.querySelector('.key[data="32"]').innerHTML= '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
 document.querySelector('.key[data="8"]').innerHTML = 'BACKSPACE';
 
-
+}
+keydatakey ();
 //добавление даты и символа .end//
 
 let arrtext='';
@@ -69,27 +67,53 @@ document.onkeydown = function(event){
  if(act[0]){
      act[0].classList.remove('active');
  }
- 
- if(event.code=='ShiftRight'){
-    document.querySelector('.key[data="161"]').classList.add('active');
+ else
+ if(event.code=="ShiftRight"){
     
+ }  
+ else
+ if(event.code=='ControlRight'){
+     document.querySelector('.key[data="171"]').classList.add('active');  
+  }
+  
+ else{
+         document.querySelector('.key[data="'+event.keyCode+'"]').classList.add('active');
+         document.querySelectorAll('#keyboard .key').forEach(function(element){
+            element.innerHTML=(String.fromCharCode(element.getAttribute('data'))).toLowerCase();
+            keydatakey ();
+    });
  }
-else{
-document.querySelector('.key[data="'+event.keyCode+'"]').classList.add('active');
-} 
-//Переназначение кнопок....//
+ let ac = document.getElementsByClassName('act');
+    if(ac[0]){
+        ac[0].classList.remove('act');
+    }
+ if(event.getModifierState('CapsLock')){
+   
+    document.querySelector('.key[data="20"]').classList.add('act'); 
+    document.querySelectorAll('#keyboard .key').forEach(function(element){
+        element.innerHTML=(String.fromCharCode(element.getAttribute('data'))).toUpperCase();
+        keydatakey ();
+});
+  }
 
+
+//Переназначение кнопок....//
+//BackSpase//
     if(event.keyCode =='8'){ 
    Arrtext.splice(Arrtext.length-1,1);
    }
 
 else
+
+//CAPSLOOCK______________________________________//
+
+
 if(event.getModifierState('CapsLock')){
     
     if(event.keyCode !=20){
     addk = String.fromCharCode(event.keyCode);
-    
-}
+    }
+        
 }
 else
 if(event.getModifierState("Shift")){
@@ -115,7 +139,7 @@ if(event.keyCode =='8'){
  }
 //Переназначение кнопок...END.//
  //вывод текста на экран...//
- console.log(event);
+ 
 arrtext = Arrtext.join('');
 document.querySelector('.text').innerHTML=arrtext;
 
