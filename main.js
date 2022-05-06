@@ -5,10 +5,21 @@ const keybord = [192, 49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 189, 187, 8, 36, 9
 
 let simvol ='';
 //добавление даты и символа .//
+let keyboard_sim='';
+
+//for(let i=0;i<keybord.length;i++){
+  //   simvol+='<div class="key" data="'+keybord[i]+'">'+(String.fromCharCode(keybord[i])).toLowerCase()+'</div>'
+//keyboard.innerHTML=simvol;
+//}
+function add_symvol(){
 for(let i=0;i<keybord.length;i++){
-     simvol+='<div class="key" data="'+keybord[i]+'">'+String.fromCharCode(keybord[i])+'</div>'
-keyboard.innerHTML=simvol;
+     simvol+='<div class="key" data="'+keybord[i]+'">'+(String.fromCharCode(keybord[i])).toLowerCase()+'</div>'
+  keyboard.innerHTML=simvol;
+  }
 }
+add_symvol();
+  
+
 document.querySelector('.key[data="192"]').innerHTML='`';
 document.querySelector('.key[data="189"]').innerHTML='-';
 document.querySelector('.key[data="187"]').innerHTML='=';
@@ -29,7 +40,7 @@ document.querySelector('.key[data="190"]').innerHTML= '.';
 document.querySelector('.key[data="191"]').innerHTML= '/';
 document.querySelector('.key[data="161"]').innerHTML= '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#8679;&nbsp&nbsp;&nbsp;SHIFT.&nbsp;&nbsp;&nbsp;&nbsp'; 
 document.querySelector('.key[data="38"]').innerHTML= '&uarr;';
-document.querySelector('.key[data="35"]').innerHTML= 'END';
+document.querySelector('.key[data="35"]').innerHTML= 'END'; 
 document.querySelector('.key[data="17"]').innerHTML= 'CTRL';
 document.querySelector('.key[data="91"]').innerHTML= '&#9733;';
 document.querySelector('.key[data="18"]').innerHTML= 'ALT';
@@ -44,12 +55,15 @@ document.querySelector('.key[data="8"]').innerHTML = 'BACKSPACE';
 
 
 //добавление даты и символа .end//
+
 let arrtext='';
 let bac ='';
 let key='';
 let addk ='';
 let Arrtext = [];
 const newLocal = 'backspase';
+
+//обработчик событий//
 document.onkeydown = function(event){
     let act = document.getElementsByClassName('active');
  if(act[0]){
@@ -60,7 +74,7 @@ document.onkeydown = function(event){
 //Переназначение кнопок....//
  if(event.keyCode==189){
     addk='-';   
-    //Arrtext.push(addk);
+    
  }
  else
     if(event.keyCode =='8'){ 
@@ -72,16 +86,23 @@ else
 }
 else
 if(event.getModifierState('CapsLock')){
+    
     if(event.keyCode !=20){
     addk = String.fromCharCode(event.keyCode);
-    //Arrtext.push(addk);
+    
 }
+}
+else
+if(event.getModifierState("Shift")){
+
+    addk =(event.key.toUpperCase());
+    
+
 }
 else{
-    addk=String.fromCharCode((String.fromCharCode(event.keyCode).toLowerCase()).charCodeAt());
-     
+    addk=String.fromCharCode((String.fromCharCode(event.keyCode).toLowerCase()).charCodeAt());   
 }
-if(event.keyCode != 20 ){ 
+if(event.keyCode != 20 && event.keyCode != 16 ){ 
     Arrtext.push(addk);
 }
 if(event.keyCode =='8'){ 
@@ -90,7 +111,7 @@ if(event.keyCode =='8'){
  }
 //Переназначение кнопок...END.//
  //вывод текста на экран...//
- 
+ console.log(event.key);
 arrtext = Arrtext.join('');
 document.querySelector('.text').innerHTML=arrtext;
 
