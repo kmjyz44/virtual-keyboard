@@ -96,13 +96,18 @@ else
 if(event.getModifierState("Shift")){
 
     addk =(event.key.toUpperCase());
-    
+}
+else
+if(event.getModifierState("Alt"+"Shift")){
 
+   // console.log(event.key.toUpperCase());
 }
+
 else{
-    addk=String.fromCharCode((String.fromCharCode(event.keyCode).toLowerCase()).charCodeAt());   
+    addk=event.key;
+    //String.fromCharCode((String.fromCharCode(event.keyCode).toLowerCase()).charCodeAt());   
 }
-if(event.keyCode != 20 && event.keyCode != 16 ){ 
+if(event.keyCode != 20 && event.keyCode != 16 && event.keyCode != 17 && event.keyCode != 18 ){ 
     Arrtext.push(addk);
 }
 if(event.keyCode =='8'){ 
@@ -111,7 +116,7 @@ if(event.keyCode =='8'){
  }
 //Переназначение кнопок...END.//
  //вывод текста на экран...//
- console.log(event.key);
+ 
 arrtext = Arrtext.join('');
 document.querySelector('.text').innerHTML=arrtext;
 
