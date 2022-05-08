@@ -2,7 +2,7 @@
 const keyboard = document.querySelector('.keyboard');
 const keybord = [192, 49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 189, 187, 8, 36, 9, 81, 87, 69, 82, 84, 89, 85, 73, 79, 80, 219, 221, 220, 33, 20, 65, 83, 68, 70, 71, 72, 74, 75, 76, 186, 222, 13, 34, 16, 90, 88, 67, 86, 66, 78, 77, 188, 190, 191, 161, 38, 35, 17, 91, 18, 32, 226, 181, 171, 37, 40, 39];
 
-
+let shif ='';
 let simvol ='';
 //добавление даты и символа .//
 let keyboard_sim='';
@@ -10,7 +10,7 @@ let keyboard_sim='';
 
 function add_symvol(){
 for(let i=0;i<keybord.length;i++){
-     simvol+='<div class="key" data="'+keybord[i]+'">'+(String.fromCharCode(keybord[i])).toLowerCase()+'</div>'
+     simvol+='<div class="key" id = "'+keybord[i]+'"  data="'+keybord[i]+'">'+(String.fromCharCode(keybord[i])).toLowerCase()+'</div>'
   keyboard.innerHTML=simvol;
   }
 }
@@ -61,7 +61,25 @@ let addk ='';
 let Arrtext = [];
 const newLocal = 'backspase';
 
-//обработчик событий//
+
+function caps (){
+    document.querySelector('.key[data="20"]').classList.add('act'); 
+    document.querySelectorAll('#keyboard .key').forEach(function(element){
+        element.innerHTML=(String.fromCharCode(element.getAttribute('data'))).toUpperCase();
+        keydatakey ();
+});
+
+     }
+
+     function capsoff(){
+        document.querySelectorAll('#keyboard .key').forEach(function(element){
+        element.innerHTML=(String.fromCharCode(element.getAttribute('data'))).toLowerCase();
+                  keydatakey ();
+                  
+        });
+        }
+
+        //обработчик событий//
 document.onkeydown = function(event){
     
     let act = document.getElementsByClassName('active');
@@ -70,7 +88,7 @@ document.onkeydown = function(event){
  }
  else
  if(event.code=="ShiftRight"){
-    
+    document.querySelector('.key[data="161"]').classList.add('active'); 
  }  
  else
  if(event.code=='ControlRight'){
@@ -83,28 +101,17 @@ document.onkeydown = function(event){
  }
 
  //CAPSLOCK
-function caps (){
+     
  let ac = document.getElementsByClassName('act');
     if(ac[0]){
         ac[0].classList.remove('act');
     }
  if(event.getModifierState('CapsLock')||event.getModifierState('Shift')){
-   
-    document.querySelector('.key[data="20"]').classList.add('act'); 
-    document.querySelectorAll('#keyboard .key').forEach(function(element){
-        element.innerHTML=(String.fromCharCode(element.getAttribute('data'))).toUpperCase();
-        keydatakey ();
-});
-
+     caps();
   }
-  else
-  document.querySelectorAll('#keyboard .key').forEach(function(element){
-  element.innerHTML=(String.fromCharCode(element.getAttribute('data'))).toLowerCase();
-            keydatakey ();
-
-  });
-}
-caps();
+  else{
+  capsoff();
+  }
 //Переназначение кнопок....//
 //BackSpase//
     if(event.keyCode =='8'){ 
@@ -112,9 +119,6 @@ caps();
    }
 
 else
-
-//CAPSLOOCK______________________________________//
-
 
 if(event.getModifierState('CapsLock')){
     
@@ -160,126 +164,50 @@ document.querySelector('.text').innerHTML=arrtext;
 
   //вывод текста на экран...END//
   
+
+
+
 }
+document.addEventListener('click',(e)=>{
+
+    let act = document.getElementsByClassName('active');
+    if(act[0]){
+        act[0].classList.remove('active');
+    }
+   document.querySelector('.key[id="'+e.target.id+'"]').classList.add('active');
+           
+    //CAPSLOCK
+   
+    let ac = document.getElementsByClassName('act');
+       if(ac[0]){
+           ac[0].classList.remove('act');
+       }
+    if(e.target.id==20){
+        
+        caps();
+    }
+    else{
+        
+        capsoff();
+    
+}
+
+console.log(String.fromCharCode(20));
+
+     Arrtext.push( String.fromCharCode(e.target.id));
+    arrtext = Arrtext.join('');
+document.querySelector('.text').innerHTML=arrtext;
+})
 
    //Переназначение кнопок...END.//
     //вывод текста на экран...//
     
   
 
-    let clik =0;
+
 
 //Мишка
 
-let selectorkey = document.querySelectorAll('#keyboard .key');
-selectorkey.forEach(function(element) {
-    element.onclick = function(ev){
-
-        let datakey = element.getAttribute('data');
-        act = document.getElementsByClassName('active');
-    if(act[0]){
-       act[0].classList.remove('active');
-    }
-    document.querySelector('.key[data="'+datakey+'"]').classList.add('active');
-    
-//CAPSLOCK
-
-let ac = document.getElementsByClassName('act');
-
-if(ac[0]){
-    ac[0].classList.remove('act');
-}
-if(datakey==20||datakey==16){
-clik=clik+1;
-document.querySelector('.key[data="20"]').classList.add('act'); 
-document.querySelectorAll('#keyboard .key').forEach(function(elemen){
-    elemen.innerHTML=(String.fromCharCode(elemen.getAttribute('data'))).toUpperCase();
-    keydatakey ();    
-}); 
-}
-else{
-    
-document.querySelectorAll('#keyboard .key').forEach(function(elemen){
-elemen.innerHTML=(String.fromCharCode(elemen.getAttribute('data'))).toLowerCase();
-          keydatakey ();
-
-});
-
-}
-console.log(clik);
-if(datakey==20){
-    if(datakey !=20){
-    addk = String.fromCharCode(datakey);
-    }       
-}
-
-else
-
-if(datakey==16){
-    addk =(datakey.toUpperCase());
-}
-else
-if(datakey==13){
-    addk='                                                                            '; 
-    Arrtext.push(addk); 
-}
-
-else{
-    if(clik=2){
-   addk=String.fromCharCode(datakey).toLowerCase(); 
-    }
-    else{
-        addk=String.fromCharCode(datakey).toLocaleUpperCase;  
-    }
-}
-
-if(datakey!= 20 && datakey != 16 && datakey != 17 && datakey != 18 && datakey != 36 && datakey != 9 && datakey != 33 && datakey != 13 && datakey != 34 && datakey != 38 && datakey != 35 && datakey != 17 && datakey != 91 && datakey != 37 && datakey != 40 && datakey != 39){ 
-    Arrtext.push(addk);
-    
-}
-if(datakey =='8'){ 
-    Arrtext.splice(Arrtext.length-1,1);
-    
- }
-
- if(clik=2){
-    addk=String.fromCharCode(datakey).toLowerCase(); 
-     }
-     else{
-         addk=String.fromCharCode(datakey).toLocaleUpperCase;  
-     }
-    //Arrtext.push(addk);
- arrtext = Arrtext.join('');
-document.querySelector('.text').innerHTML=arrtext;
-
-
-
-
-   // if(datakey==189){
-     //   addk='-';   
-       // Arrtext.push(addk);
-     //}
-     //else
-       // if(datakey =='8'){ 
-       //Arrtext.splice(Arrtext.length-1,1);
-    //}
-    //else
-      //  if(datakey ==187){ 
-        //    addk='=';   
-          //  Arrtext.push(addk);
-    //}
-    
-    //else{
-    //addk = String.fromCharCode(datakey);
-    //Arrtext.push(addk);
-    //arrtext = Arrtext.join('');
-    //document.querySelector('.text').innerHTML=arrtext;
-    //}
-    //arrtext = Arrtext.join('');
-    //document.querySelector('.text').innerHTML=arrtext;
-    }
-    
-});
 
 //Мишка end//
   
