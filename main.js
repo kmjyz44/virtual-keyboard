@@ -121,10 +121,16 @@ if(event.getModifierState("Shift")){
     addk =(event.key.toUpperCase());
 }
 else
+if(event.keyCode==13){
+    addk='                                                                            '; 
+    Arrtext.push(addk); 
+}
+else
 if(event.getModifierState("Alt"+"Shift")){
 
    // console.log(event.key.toUpperCase());
 }
+
 
 else{
     addk=event.key;
@@ -137,6 +143,7 @@ if(event.keyCode =='8'){
     Arrtext.splice(Arrtext.length-1,1);
     
  }
+
 //Переназначение кнопок...END.//
  //вывод текста на экран...//
  
