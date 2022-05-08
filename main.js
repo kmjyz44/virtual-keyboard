@@ -63,6 +63,7 @@ const newLocal = 'backspase';
 
 //обработчик событий//
 document.onkeydown = function(event){
+    
     let act = document.getElementsByClassName('active');
  if(act[0]){
      act[0].classList.remove('active');
@@ -78,11 +79,11 @@ document.onkeydown = function(event){
   
  else{
          document.querySelector('.key[data="'+event.keyCode+'"]').classList.add('active');
-         document.querySelectorAll('#keyboard .key').forEach(function(element){
-            element.innerHTML=(String.fromCharCode(element.getAttribute('data'))).toLowerCase();
-            keydatakey ();
-    });
+        
  }
+
+ //CAPSLOCK
+function caps (){
  let ac = document.getElementsByClassName('act');
     if(ac[0]){
         ac[0].classList.remove('act');
@@ -94,9 +95,16 @@ document.onkeydown = function(event){
         element.innerHTML=(String.fromCharCode(element.getAttribute('data'))).toUpperCase();
         keydatakey ();
 });
+
   }
+  else
+  document.querySelectorAll('#keyboard .key').forEach(function(element){
+  element.innerHTML=(String.fromCharCode(element.getAttribute('data'))).toLowerCase();
+            keydatakey ();
 
-
+  });
+}
+caps();
 //Переназначение кнопок....//
 //BackSpase//
     if(event.keyCode =='8'){ 
@@ -151,7 +159,7 @@ arrtext = Arrtext.join('');
 document.querySelector('.text').innerHTML=arrtext;
 
   //вывод текста на экран...END//
-
+  
 }
 
    //Переназначение кнопок...END.//
@@ -159,48 +167,120 @@ document.querySelector('.text').innerHTML=arrtext;
     
   
 
-  
- 
-
-
+    let clik =0;
 
 //Мишка
 
 let selectorkey = document.querySelectorAll('#keyboard .key');
 selectorkey.forEach(function(element) {
     element.onclick = function(ev){
+
+        let datakey = element.getAttribute('data');
         act = document.getElementsByClassName('active');
     if(act[0]){
        act[0].classList.remove('active');
     }
-    
-    let datakey = element.getAttribute('data');
     document.querySelector('.key[data="'+datakey+'"]').classList.add('active');
-    if(datakey==189){
-        addk='-';   
-        Arrtext.push(addk);
-     }
-     else
-        if(datakey =='8'){ 
-       Arrtext.splice(Arrtext.length-1,1);
-    }
-    else
-        if(datakey ==187){ 
-            addk='=';   
-            Arrtext.push(addk);
-    }
     
-    else{
-    addk = String.fromCharCode(datakey);
-    Arrtext.push(addk);
-    arrtext = Arrtext.join('');
-    document.querySelector('.text').innerHTML=arrtext;
-    }
-    arrtext = Arrtext.join('');
-    document.querySelector('.text').innerHTML=arrtext;
+//CAPSLOCK
+
+let ac = document.getElementsByClassName('act');
+
+if(ac[0]){
+    ac[0].classList.remove('act');
+}
+if(datakey==20||datakey==16){
+clik=clik+1;
+document.querySelector('.key[data="20"]').classList.add('act'); 
+document.querySelectorAll('#keyboard .key').forEach(function(elemen){
+    elemen.innerHTML=(String.fromCharCode(elemen.getAttribute('data'))).toUpperCase();
+    keydatakey ();    
+}); 
+}
+else{
+    
+document.querySelectorAll('#keyboard .key').forEach(function(elemen){
+elemen.innerHTML=(String.fromCharCode(elemen.getAttribute('data'))).toLowerCase();
+          keydatakey ();
+
+});
 
 }
+console.log(clik);
+if(datakey==20){
+    if(datakey !=20){
+    addk = String.fromCharCode(datakey);
+    }       
+}
+
+else
+
+if(datakey==16){
+    addk =(datakey.toUpperCase());
+}
+else
+if(datakey==13){
+    addk='                                                                            '; 
+    Arrtext.push(addk); 
+}
+
+else{
+    if(clik=2){
+   addk=String.fromCharCode(datakey).toLowerCase(); 
+    }
+    else{
+        addk=String.fromCharCode(datakey).toLocaleUpperCase;  
+    }
+}
+
+if(datakey!= 20 && datakey != 16 && datakey != 17 && datakey != 18 && datakey != 36 && datakey != 9 && datakey != 33 && datakey != 13 && datakey != 34 && datakey != 38 && datakey != 35 && datakey != 17 && datakey != 91 && datakey != 37 && datakey != 40 && datakey != 39){ 
+    Arrtext.push(addk);
+    
+}
+if(datakey =='8'){ 
+    Arrtext.splice(Arrtext.length-1,1);
+    
+ }
+
+ if(clik=2){
+    addk=String.fromCharCode(datakey).toLowerCase(); 
+     }
+     else{
+         addk=String.fromCharCode(datakey).toLocaleUpperCase;  
+     }
+    //Arrtext.push(addk);
+ arrtext = Arrtext.join('');
+document.querySelector('.text').innerHTML=arrtext;
+
+
+
+
+   // if(datakey==189){
+     //   addk='-';   
+       // Arrtext.push(addk);
+     //}
+     //else
+       // if(datakey =='8'){ 
+       //Arrtext.splice(Arrtext.length-1,1);
+    //}
+    //else
+      //  if(datakey ==187){ 
+        //    addk='=';   
+          //  Arrtext.push(addk);
+    //}
+    
+    //else{
+    //addk = String.fromCharCode(datakey);
+    //Arrtext.push(addk);
+    //arrtext = Arrtext.join('');
+    //document.querySelector('.text').innerHTML=arrtext;
+    //}
+    //arrtext = Arrtext.join('');
+    //document.querySelector('.text').innerHTML=arrtext;
+    }
+    
 });
+
 //Мишка end//
   
   
