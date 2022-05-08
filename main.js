@@ -87,7 +87,7 @@ document.onkeydown = function(event){
     if(ac[0]){
         ac[0].classList.remove('act');
     }
- if(event.getModifierState('CapsLock')){
+ if(event.getModifierState('CapsLock')||event.getModifierState('Shift')){
    
     document.querySelector('.key[data="20"]').classList.add('act'); 
     document.querySelectorAll('#keyboard .key').forEach(function(element){
